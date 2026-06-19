@@ -1,0 +1,434 @@
+
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Academy | Learn, Connect, Travel</title>
+    <style>
+        :root {
+            --primary: #0f2c59; 
+            --accent: #ff4d4d;              
+            --light-accent: #dac0a3;
+            --bg: #f8fafc;
+            --white: #ffffff;
+            --success: #2f855a;
+            --text-dark: #333333;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: var(--bg); color: var(--text-dark); line-height: 1.6; }
+
+        header { 
+            background: var(--white); 
+            padding: 15px 20px; 
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08); 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .brand-link {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .logo-img-header {
+            height: 50px;
+            width: auto;
+            border-radius: 5px;
+        }
+
+        .logo-text { font-size: 22px; font-weight: 900; color: var(--primary); text-transform: uppercase; letter-spacing: 1px; }
+        .logo-text span { color: var(--accent); }
+
+        .header-socials {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .header-social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            color: white;
+            transition: 0.2s;
+        }
+        .header-social-btn.fb { background: #1877f2; }
+        .header-social-btn.ig { background: #e4405f; }
+        .header-social-btn.tt { background: #000000; }
+        .header-social-btn:hover { opacity: 0.9; transform: scale(1.05); }
+        .header-social-btn svg { width: 18px; height: 18px; fill: currentColor; }
+
+        .hero { 
+            padding: 40px 15px; 
+            text-align: center; 
+            background: linear-gradient(rgba(15, 44, 89, 0.05), rgba(15, 44, 89, 0.02));
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .main-logo-hero {
+            width: 120px;
+            height: auto;
+            margin-bottom: 15px;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .hero h1 { 
+            color: var(--primary); 
+            margin-bottom: 20px; 
+            font-size: 32px; 
+            text-transform: uppercase;
+        }
+
+        .mission-box {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--white);
+            padding: 25px 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            text-align: left;
+        }
+
+        .mission-title {
+            font-size: 18px;
+            color: var(--primary);
+            font-weight: bold;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .services-list { list-style: none; margin-bottom: 20px; }
+        .services-list li { margin-bottom: 10px; font-size: 15px; display: flex; align-items: flex-start; gap: 10px; }
+
+        .slogan { 
+            font-size: 20px; 
+            font-weight: bold; 
+            color: var(--accent); 
+            font-style: italic; 
+            margin-top: 20px;
+            display: block;
+            text-align: center;
+        }
+        
+        .window-nav { 
+            display: flex;
+            justify-content: flex-start;
+            gap: 10px; 
+            padding: 20px 15px; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            overflow-x: auto;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+        .window-nav::-webkit-scrollbar { display: none; }
+        
+        .nav-btn { 
+            background: var(--white); 
+            padding: 10px 18px; 
+            border-radius: 30px; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            cursor: pointer;
+            transition: 0.3s;
+            border: 2px solid transparent;
+            font-weight: bold;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+            font-size: 15px;
+        }
+        .nav-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+
+        .flag-icon {
+            width: 20px;
+            height: auto;
+            border-radius: 2px;
+            object-fit: cover;
+        }
+
+        .content-container { max-width: 1000px; margin: 0 auto 40px; padding: 0 15px; }
+        .tab-content { display: none; background: var(--white); border-radius: 20px; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.06); animation: fadeIn 0.4s ease; }
+        .tab-content.active { display: block; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+        .section-img { width: 100%; height: 250px; object-fit: cover; border-bottom: 4px solid var(--light-accent); }
+        
+        .founder-img {
+            height: 350px;
+            object-fit: cover;
+            object-position: top center;
+        }
+
+        .content-padding { padding: 25px 20px; }
+
+        h2 { color: var(--primary); margin-bottom: 20px; border-bottom: 2px solid var(--light-accent); padding-bottom: 10px; font-size: 22px; display: flex; align-items: center; gap: 10px; }
+        h2 .flag-icon { width: 28px; }
+
+        .feature-box { background: #f1f5f9; padding: 15px; border-radius: 12px; margin-bottom: 15px; border-left: 4px solid var(--light-accent); }
+        .feature-box h3 { font-size: 15px; margin-bottom: 5px; color: var(--primary); text-transform: uppercase; }
+        .feature-box p { font-size: 14px; }
+
+        .action-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 25px; }
+        
+        .btn { padding: 14px; border-radius: 12px; text-decoration: none; font-weight: bold; color: white; text-align: center; transition: 0.2s; display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 15px; }
+        .btn-call { background: var(--success); font-size: 16px; }
+        .btn-fb { background: #1877f2; }
+        .btn-ig { background: #e4405f; }
+        .btn-tt { background: #000000; }
+        .btn:hover { opacity: 0.9; transform: scale(1.01); }
+        
+        .btn svg, .header-social-btn svg { width: 20px; height: 20px; fill: currentColor; }
+
+        footer { text-align: center; padding: 40px 20px; background: var(--primary); color: white; font-size: 14px; }
+        footer p { margin-top: 8px; opacity: 0.9; }
+
+        @media (min-width: 768px) {
+            .hero { padding: 60px 20px; }
+            .hero h1 { font-size: 42px; }
+            .main-logo-hero { width: 150px; }
+            .logo-img-header { height: 60px; }
+            .logo-text { font-size: 24px; }
+            .window-nav { justify-content: center; overflow-x: visible; white-space: normal; padding: 30px 20px; }
+            .nav-btn { font-size: 16px; padding: 12px 22px; }
+            .section-img { height: 450px; }
+            .founder-img { height: 520px; }
+            .content-padding { padding: 40px; }
+            h2 { font-size: 26px; }
+            .feature-box h3 { font-size: 16px; }
+            .feature-box p { font-size: 15px; }
+            .action-grid { grid-template-columns: 1fr 1fr; }
+            .btn-call { grid-column: span 2; font-size: 18px; }
+        }
+    </style>
+</head>
+<body id="top">
+
+    <header>
+        <div class="header-container">
+            <a onclick="goHome()" class="brand-link">
+                <img src="https://i.ibb.co/jcngGz2/322511aa-232c-4b6e-83c1-515b81df6a83.jpg" alt="Logo" class="logo-img-header">
+                <div class="logo-text">Travel <span>Academy</span></div>
+            </a>
+            
+            <div class="header-socials">
+                <a href="https://www.facebook.com/p/Travel-Academy-100083552283543/" class="header-social-btn fb" target="_blank" title="Facebook">
+                    <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                </a>
+                <a href="https://www.instagram.com/travel_academy_1/" class="header-social-btn ig" target="_blank" title="Instagram">
+                    <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                </a>
+                <a href="https://www.tiktok.com/@travelacademy2?is_from_webapp=1&sender_device=pc" class="header-social-btn tt" target="_blank" title="TikTok">
+                    <svg viewBox="0 0 24 24"><path d="M12.525.02c1.31.01 2.61.01 3.91.02.08 1.53.63 3.03 1.65 4.14 1.12 1.21 2.7 1.94 4.32 2.05v3.86c-1.72-.02-3.4-.63-4.74-1.73-.13-.1-.26-.2-.4-.32v5.71c0 2.4-.68 4.77-2.07 6.63-2.22 2.96-5.96 4.46-9.62 3.83-3.08-.53-5.83-2.73-7.14-5.63C-2.5 16.48-1.5 11.23 2.05 8.7c1.9-1.35 4.25-1.92 6.57-1.57v3.9c-1.8-.46-3.77-.07-5.24 1.05-1.68 1.28-2.3 3.64-1.46 5.63.78 1.87 2.72 3.12 4.75 3.1 2.37.03 4.45-1.73 4.78-4.09.06-.41.07-.83.07-1.24v-11.5c.01-.98.01-1.96.04-2.94z"/></svg>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <img src="https://i.ibb.co/jcngGz2/322511aa-232c-4b6e-83c1-515b81df6a83.jpg" alt="Travel Academy Logo" class="main-logo-hero">
+        <h1>Travel Academy</h1>
+        <div class="mission-box">
+            <span class="mission-title">🎓 მთავარი მისია: საერთაშორისო განათლების ხელშეწყობა</span>
+            <ul class="services-list">
+                <li><span>🏛️</span> <span>საგანმანათლებლო ტურები & კონფერენციები</span></li>
+                <li><span>💼</span> <span>აკადემიური ვიზიტები & ბიზნეს შეხვედრები</span></li>
+                <li><span>✈️</span> <span>ტურები მსოფლიოს ნებისმიერი მიმართულებით</span></li>
+                <li><span>🛂</span> <span>სავიზო მომსახურება ყველა ქვეყანაში</span></li>
+            </ul>
+            <p class="slogan">“Learn, Connect, Travel”</p>
+        </div>
+    </section>
+
+    <nav class="window-nav">
+        <div class="nav-btn" onclick="openTab('founder')">👩‍💼 დამფუძნებელი</div>
+        <div class="nav-btn" onclick="openTab('general-info')">ℹ️ ზოგადი ინფორმაცია</div>
+        <div class="nav-btn" onclick="openTab('uk')"><img src="https://flagcdn.com/w40/gb.png" class="flag-icon" alt="UK"> ინგლისი</div>
+        <div class="nav-btn" onclick="openTab('usa')"><img src="https://flagcdn.com/w40/us.png" class="flag-icon" alt="USA"> აშშ</div>
+        <div class="nav-btn" onclick="openTab('canada')"><img src="https://flagcdn.com/w40/ca.png" class="flag-icon" alt="Canada"> კანადა</div>
+        <div class="nav-btn" onclick="openTab('ireland')"><img src="https://flagcdn.com/w40/ie.png" class="flag-icon" alt="Ireland"> ირლანდია</div>
+        <div class="nav-btn" onclick="openTab('japan')"><img src="https://flagcdn.com/w40/jp.png" class="flag-icon" alt="Japan"> იაპონია</div>
+        <div class="nav-btn" onclick="openTab('australia')"><img src="https://flagcdn.com/w40/au.png" class="flag-icon" alt="Australia"> ავსტრალია</div>
+    </nav>
+
+    <div class="content-container">
+        
+        <div id="founder" class="tab-content">
+            <img src="https://i.ibb.co/6cx7nHh7/download.jpg" alt="ქრისტი ხუფენია" class="section-img founder-img">
+            <div class="content-padding">
+                <h2>ქრისტი ხუფენია</h2>
+                <div class="feature-box">
+                    <h3>🎓 აკადემიური სტატუსი & მიზნები</h3>
+                    <p>თსუ-ს მენეჯმენტის PhD კანდიდატი. ამჟამად აბარებს მეორე PhD ხარისხზე ამერიკულ უნივერსიტეტში.</p>
+                </div>
+
+                <div class="feature-box">
+                    <h3>💼 პროფესიული გამოცდილება</h3>
+                    <p>ფლობს 10 წლიან სამუშაო სტაჟს „საქართველოს ბანკში“. საბანკო და ფინანსური განათლება გვეხმარება სავიზო დოკუმენტაციის იდეალურად მომზადებასა და ფინანსური აუდიტის ჩატარებაში.</p>
+                </div>
+                <div class="action-grid">
+                    <a href="tel:+995599445844" class="btn btn-call">📞 599 44 58 44</a>
+                    
+                    <a href="https://www.facebook.com/p/Travel-Academy-100083552283543/" class="btn btn-fb" target="_blank">
+                        <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        Facebook
+                    </a>
+                    
+                    <a href="https://www.instagram.com/travel_academy_1/" class="btn btn-ig" target="_blank">
+                        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                        Instagram
+                    </a>
+
+                    <a href="https://www.tiktok.com/@travelacademy2?is_from_webapp=1&sender_device=pc" class="btn btn-tt" target="_blank">
+                        <svg viewBox="0 0 24 24"><path d="M12.525.02c1.31.01 2.61.01 3.91.02.08 1.53.63 3.03 1.65 4.14 1.12 1.21 2.7 1.94 4.32 2.05v3.86c-1.72-.02-3.4-.63-4.74-1.73-.13-.1-.26-.2-.4-.32v5.71c0 2.4-.68 4.77-2.07 6.63-2.22 2.96-5.96 4.46-9.62 3.83-3.08-.53-5.83-2.73-7.14-5.63C-2.5 16.48-1.5 11.23 2.05 8.7c1.9-1.35 4.25-1.92 6.57-1.57v3.9c-1.8-.46-3.77-.07-5.24 1.05-1.68 1.28-2.3 3.64-1.46 5.63.78 1.87 2.72 3.12 4.75 3.1 2.37.03 4.45-1.73 4.78-4.09.06-.41.07-.83.07-1.24v-11.5c.01-.98.01-1.96.04-2.94z"/></svg>
+                        TikTok
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="general-info" class="tab-content">
+            <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=1000&q=80" class="section-img" alt="General Info">
+            <div class="content-padding">
+                <h2>ℹ️ ზოგადი ინფორმაცია</h2>
+                <div class="feature-box">
+                    <h3>📅 ორგანიზებული ტურები</h3>
+                    <p>Travel Academy წელიწადში ორჯერ ახორციელებს საგანმანათლებლო და შემეცნებით ტურებს ინგლისის მიმართულებით — <strong>აგვისტოსა და მარტში</strong>.</p>
+                </div>
+                <div class="action-grid"><a href="tel:+995599445844" class="btn btn-call">📞 დაგვიკავშირდით: 599 44 58 44</a></div>
+            </div>
+        </div>
+
+        <div id="uk" class="tab-content">
+            <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=1000&q=80" class="section-img">
+            <div class="content-padding">
+                <h2><img src="https://flagcdn.com/w40/gb.png" class="flag-icon" alt="UK"> ინგლისის მიმართულება</h2>
+                <div class="feature-box">
+                    <h3>🛂 სავიზო მომსახურება</h3>
+                    <p>უზრუნველყოფთ სრულ სავიზო მხარდაჭერას გაერთიანებულ სამეფოში გამგზავრების მსურველთათვის.</p>
+                </div>
+                <div class="action-grid"><a href="tel:+995599445844" class="btn btn-call">📞 დაგვიკავშირდით: 599 44 58 44</a></div>
+            </div>
+        </div>
+
+        <div id="usa" class="tab-content">
+            <img src="https://images.unsplash.com/photo-1485738422979-f5c462d49f74?auto=format&fit=crop&w=1000&q=80" class="section-img">
+            <div class="content-padding">
+                <h2><img src="https://flagcdn.com/w40/us.png" class="flag-icon" alt="USA"> აშშ-ის ვიზა</h2>
+                <div class="feature-box">
+                    <h3>🤝 გასაუბრების მომზადება</h3>
+                    <p>ამერიკის ვიზის მიღებისას გადამწყვეტია ინტერვიუ. ჩვენ ვამზადებთ კანდიდატებს საკონსულოში გასაუბრებისთვის და ვავსებთ ფორმა DS-160-ს.</p>
+                </div>
+                <div class="action-grid"><a href="tel:+995599445844" class="btn btn-call">📞 დაგვიკავშირდით: 599 44 58 44</a></div>
+            </div>
+        </div>
+
+        <div id="canada" class="tab-content">
+            <img src="https://images.unsplash.com/photo-1503614472-8c93d56e92ce?auto=format&fit=crop&w=1000&q=80" class="section-img">
+            <div class="content-padding">
+                <h2><img src="https://flagcdn.com/w40/ca.png" class="flag-icon" alt="Canada"> კანადის ვიზა</h2>
+                <div class="feature-box">
+                    <h3>📊 ფინანსური დოკუმენტაცია</h3>
+                    <p>კანადის სავიზო პროცესისთვის გადამწყვეტია ფინანსური დოკუმენტების აუდიტი და სწორი წარდგენა.</p>
+                </div>
+                <div class="action-grid"><a href="tel:+995599445844" class="btn btn-call">📞 დაგვიკავშირდით: 599 44 58 44</a></div>
+            </div>
+        </div>
+
+        <div id="ireland" class="tab-content">
+            <img src="https://i.ibb.co/kg9dggNM/images.jpg" class="section-img" alt="Ireland">
+            <div class="content-padding">
+                <h2><img src="https://flagcdn.com/w40/ie.png" class="flag-icon" alt="Ireland"> ირლანდიის ვიზა</h2>
+                <div class="feature-box">
+                    <h3>📝 დოკუმენტების მომზადება</h3>
+                    <p>ირლანდიის სავიზო პროცესისთვის საჭიროა დოკუმენტების ზუსტი თარგმანი და მომზადება. დეტალებისთვის დაგვიკავშირდით.</p>
+                </div>
+                <div class="action-grid"><a href="tel:+995599445844" class="btn btn-call">📞 დაგვიკავშირდით: 599 44 58 44</a></div>
+            </div>
+        </div>
+
+        <div id="japan" class="tab-content">
+            <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1000&q=80" class="section-img">
+            <div class="content-padding">
+                <h2><img src="https://flagcdn.com/w40/jp.png" class="flag-icon" alt="Japan"> იაპონიის ვიზა</h2>
+                <div class="feature-box">
+                    <h3>🌸 ტურისტული და ბიზნეს ვიზები</h3>
+                    <p>იაპონიის ტურისტული და ბიზნეს ვიზების მომზადება უმოკლეს ვადებში.</p>
+                </div>
+                <div class="action-grid"><a href="tel:+995599445844" class="btn btn-call">📞 დაგვიკავშირდით: 599 44 58 44</a></div>
+            </div>
+        </div>
+
+        <div id="australia" class="tab-content">
+            <img src="https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?auto=format&fit=crop&w=1000&q=80" class="section-img">
+            <div class="content-padding">
+                <h2><img src="https://flagcdn.com/w40/au.png" class="flag-icon" alt="Australia"> ავსტრალიის ვიზა</h2>
+                <div class="feature-box">
+                    <h3>🦘 სავიზო მხარდაჭერა</h3>
+                    <p>ავსტრალიის სავიზო აპლიკაციების პროფესიონალური მომზადება.</p>
+                </div>
+                <div class="action-grid"><a href="tel:+995599445844" class="btn btn-call">📞 დაგვიკავშირდით: 599 44 58 44</a></div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="logo-text" style="color: white; margin-bottom: 10px;">Travel <span>Academy</span></div>
+        <p>📍 თბილისი, ანა კალანდაძის 6 | 📞 ტელ: +995 599 44 58 44</p>
+        <p>© 2026 Travel Academy</p>
+    </footer>
+
+    <script>
+        function openTab(tabName) {
+            var i, content, tabs;
+            content = document.getElementsByClassName("tab-content");
+            for (i = 0; i < content.length; i++) content[i].classList.remove("active");
+            tabs = document.getElementsByClassName("nav-btn");
+            for (i = 0; i < tabs.length; i++) tabs[i].classList.remove("active");
+            document.getElementById(tabName).classList.add("active");
+            
+            if(window.event && window.event.currentTarget && window.event.type !== 'load') {
+                window.event.currentTarget.classList.add("active");
+            } else {
+                var btn = document.querySelector(`.nav-btn[onclick*="${tabName}"]`);
+                if(btn) btn.classList.add("active");
+            }
+            
+            if(window.event && window.event.type !== 'load') {
+                window.scrollTo({ top: document.querySelector('.window-nav').offsetTop - 80, behavior: 'smooth' });
+            }
+        }
+
+        function goHome() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            openTab('founder');
+        }
+
+        window.onload = function() { openTab('founder'); };
+    </script>
+</body>
+</html>
